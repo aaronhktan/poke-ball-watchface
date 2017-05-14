@@ -11,6 +11,72 @@
         "resources": {
             "media": [
                 {
+                    "file": "images/sportball.png",
+                    "name": "SPORT_BALL",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/safariball.png",
+                    "name": "SAFARI_BALL",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/premiereball.png",
+                    "name": "PREMIER_BALL",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/moonball.png",
+                    "name": "MOON_BALL",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/greenlureball.png",
+                    "name": "GREEN_LURE_BALL",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/bluelureball.png",
+                    "name": "BLUE_LURE_BALL",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/loveball.png",
+                    "name": "LOVE_BALL",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/levelball.png",
+                    "name": "LEVEL_BALL",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/heavyball.png",
+                    "name": "HEAVY_BALL",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/friendball.png",
+                    "name": "FRIEND_BALL",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/fastball.png",
+                    "name": "FAST_BALL",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
                     "file": "images/thunder.png",
                     "name": "WEATHER_THUNDER_ICON",
                     "targetPlatforms": null,

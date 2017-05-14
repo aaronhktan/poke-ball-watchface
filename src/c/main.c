@@ -1,5 +1,7 @@
 #include <pebble.h>
 
+#define D_NUMBER_OF_IMAGES 15
+
 static Window *s_main_window; // Main window
 static Layer *s_window_layer, *s_foreground_layer;
 static char s_time_text[6] = "00:00", s_battery_text[5] = "100%", s_date_text[12], s_steps_text[6];
@@ -81,6 +83,65 @@ static void health_handler(HealthEventType event, void *context) {
 	}
 }
 
+// Change image on shake
+static void accel_tap_handler(AccelAxisType axis, int32_t direction) {
+	int image_number = rand() % (D_NUMBER_OF_IMAGES);
+	
+	gbitmap_destroy(s_background_bitmap);
+	
+	switch(image_number) {
+		case 0:
+			s_background_bitmap = gbitmap_create_with_resource(RESOURCE_ID_POKE_BALL);
+			break;
+		case 1:
+			s_background_bitmap = gbitmap_create_with_resource(RESOURCE_ID_GREAT_BALL);
+			break;
+		case 2:
+			s_background_bitmap = gbitmap_create_with_resource(RESOURCE_ID_ULTRA_BALL);
+			break;
+		case 3:
+			s_background_bitmap = gbitmap_create_with_resource(RESOURCE_ID_MASTER_BALL);
+			break;
+		case 4:
+			s_background_bitmap = gbitmap_create_with_resource(RESOURCE_ID_SAFARI_BALL);
+			break;
+		case 5:
+			s_background_bitmap = gbitmap_create_with_resource(RESOURCE_ID_LEVEL_BALL);
+			break;
+		case 6:
+			s_background_bitmap = gbitmap_create_with_resource(RESOURCE_ID_BLUE_LURE_BALL);
+			break;
+		case 7:
+			s_background_bitmap = gbitmap_create_with_resource(RESOURCE_ID_GREEN_LURE_BALL);
+			break;
+		case 8:
+			s_background_bitmap = gbitmap_create_with_resource(RESOURCE_ID_MOON_BALL);
+			break;
+		case 9:
+			s_background_bitmap = gbitmap_create_with_resource(RESOURCE_ID_FRIEND_BALL);
+			break;
+		case 10:
+			s_background_bitmap = gbitmap_create_with_resource(RESOURCE_ID_LOVE_BALL);
+			break;
+		case 11:
+			s_background_bitmap = gbitmap_create_with_resource(RESOURCE_ID_HEAVY_BALL);
+			break;
+		case 12:
+			s_background_bitmap = gbitmap_create_with_resource(RESOURCE_ID_FAST_BALL);
+			break;
+		case 13:
+			s_background_bitmap = gbitmap_create_with_resource(RESOURCE_ID_SPORT_BALL);
+			break;
+		case 14:
+			s_background_bitmap = gbitmap_create_with_resource(RESOURCE_ID_PREMIER_BALL);
+			break;
+		default:
+			break;
+	}
+	
+	bitmap_layer_set_bitmap(s_background_layer, s_background_bitmap);
+}
+
 static void initialize_ui() {
 	GRect bounds = layer_get_bounds(s_window_layer);
 	
@@ -133,6 +194,11 @@ static void main_window_unload(Window *window) {
 	bitmap_layer_destroy(s_battery_layer);
 	
 	layer_destroy(s_foreground_layer);
+	
+	tick_timer_service_unsubscribe();
+	battery_state_service_unsubscribe();
+	health_service_events_unsubscribe();
+	accel_tap_service_unsubscribe();
 }
 
 static void init() {
@@ -153,6 +219,7 @@ static void init() {
 	tick_timer_service_subscribe(MINUTE_UNIT, tick_handler);
 	battery_state_service_subscribe(battery_handler);
 	health_service_events_subscribe(health_handler, NULL);
+	accel_tap_service_subscribe(accel_tap_handler);
 }
 
 // Destroy main window upon leaving
