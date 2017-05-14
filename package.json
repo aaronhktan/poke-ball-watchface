@@ -1,0 +1,121 @@
+{
+    "author": "cheeseisdisgusting@gmail.com",
+    "dependencies": {},
+    "keywords": [],
+    "name": "pok-ball",
+    "pebble": {
+        "displayName": "Pok\u00e9 Ball Watchface",
+        "enableMultiJS": true,
+        "messageKeys": [],
+        "projectType": "native",
+        "resources": {
+            "media": [
+                {
+                    "file": "images/thunder.png",
+                    "name": "WEATHER_THUNDER_ICON",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/sun.png",
+                    "name": "WEATHER_SUN_ICON",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/rain.png",
+                    "name": "WEATHER_RAIN_ICON",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/moon.png",
+                    "name": "WEATHER_MOON_ICON",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/cloud.png",
+                    "name": "WEATHER_CLOUD_ICON",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/health.png",
+                    "name": "HEALTH_ICON",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/battery_full.png",
+                    "name": "BATTERY_FULL_ICON",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/battery_charging.png",
+                    "name": "BATTERY_CHARGING_ICON",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/battery.png",
+                    "name": "BATTERY_ICON",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/masterball.png",
+                    "name": "MASTER_BALL",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/ultraball.png",
+                    "name": "ULTRA_BALL",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/greatball.png",
+                    "name": "GREAT_BALL",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/pokeball.png",
+                    "name": "POKE_BALL",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "characterRegex": "[0-9A-Za-z:.]",
+                    "file": "fonts/GB.ttf",
+                    "name": "GB_8",
+                    "targetPlatforms": null,
+                    "type": "font"
+                },
+                {
+                    "characterRegex": "[0-9:]",
+                    "file": "fonts/GB.ttf",
+                    "name": "GB_24",
+                    "targetPlatforms": null,
+                    "type": "font"
+                }
+            ]
+        },
+        "sdkVersion": "3",
+        "targetPlatforms": [
+            "aplite",
+            "basalt",
+            "chalk",
+            "diorite",
+            "emery"
+        ],
+        "uuid": "cb786667-e9e3-4579-8900-4b9fc50f7ea4",
+        "watchapp": {
+            "watchface": true
+        }
+    },
+    "version": "1.0.0"
+}
