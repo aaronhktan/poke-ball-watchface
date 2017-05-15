@@ -1,10 +1,11 @@
 #include <pebble.h>
 
-#define D_NUMBER_OF_IMAGES 15
+#define D_NUMBER_OF_IMAGES 29
 
 static Window *s_main_window; // Main window
 static Layer *s_window_layer, *s_foreground_layer;
 static char s_time_text[6] = "00:00", s_battery_text[5] = "100%", s_date_text[12], s_steps_text[6];
+static bool is_inverted = false;
 static GFont s_gb_font_large, s_gb_font_small;
 static BitmapLayer *s_background_layer, *s_battery_layer, *s_health_layer;
 static GBitmap *s_background_bitmap, *s_battery_bitmap, *s_battery_charging_bitmap, *s_battery_full_bitmap, *s_health_bitmap;
@@ -14,8 +15,12 @@ static void foreground_update_proc(Layer *s_foreground_layer, GContext *ctx) {
 	// Set bounds of window
 	GRect bounds = layer_get_bounds(s_window_layer);
 	
-	// Set colour to black
-	graphics_context_set_text_color(ctx, GColorBlack);
+	// Set colour to legible
+	if (is_inverted) {
+		graphics_context_set_text_color(ctx, GColorWhite);
+	} else {
+		graphics_context_set_text_color(ctx, GColorBlack);
+	}
 	
 	// Draw time text
 	GSize time_text_bounds = graphics_text_layout_get_content_size("24:00", s_gb_font_large, GRect(0, 0, bounds.size.w, bounds.size.h), GTextOverflowModeWordWrap, GTextAlignmentCenter);
@@ -58,7 +63,7 @@ static void tick_handler(struct tm *tick_time, TimeUnits units_changed) {
 // Update battery icon and percentage
 static void battery_handler() {
 	BatteryChargeState state = battery_state_service_peek();
-	if (state.is_charging && state.charge_percent == 100) {
+	if (!state.is_charging && state.is_plugged) {
 		bitmap_layer_set_bitmap(s_battery_layer, s_battery_full_bitmap);
 		snprintf(s_battery_text, sizeof(s_battery_text), "-");
 	} else if (state.is_charging) {
@@ -69,6 +74,7 @@ static void battery_handler() {
 		int s_battery_level = state.charge_percent;
 		snprintf(s_battery_text, sizeof(s_battery_text), "%d", s_battery_level);
 	}
+	layer_mark_dirty(s_foreground_layer);
 }
 
 // Update step count
@@ -135,11 +141,74 @@ static void accel_tap_handler(AccelAxisType axis, int32_t direction) {
 		case 14:
 			s_background_bitmap = gbitmap_create_with_resource(RESOURCE_ID_PREMIER_BALL);
 			break;
+		case 15:
+			s_background_bitmap = gbitmap_create_with_resource(RESOURCE_ID_REPEAT_BALL);
+			break;
+		case 16:
+			s_background_bitmap = gbitmap_create_with_resource(RESOURCE_ID_TIMER_BALL);
+			break;
+		case 17:
+			s_background_bitmap = gbitmap_create_with_resource(RESOURCE_ID_NEST_BALL);
+			break;
+		case 18:
+			s_background_bitmap = gbitmap_create_with_resource(RESOURCE_ID_NET_BALL);
+			break;
+		case 19:
+			s_background_bitmap = gbitmap_create_with_resource(RESOURCE_ID_DIVE_BALL);
+			break;
+		case 20:
+			s_background_bitmap = gbitmap_create_with_resource(RESOURCE_ID_LUXURY_BALL);
+			break;
+		case 21:
+			s_background_bitmap = gbitmap_create_with_resource(RESOURCE_ID_QUICK_BALL);
+			break;
+		case 22:
+			s_background_bitmap = gbitmap_create_with_resource(RESOURCE_ID_HEAL_BALL);
+			break;
+		case 23:
+			s_background_bitmap = gbitmap_create_with_resource(RESOURCE_ID_DUSK_BALL);
+			break;
+		case 24:
+			s_background_bitmap = gbitmap_create_with_resource(RESOURCE_ID_CHERISH_BALL);
+			break;
+		case 25:
+			s_background_bitmap = gbitmap_create_with_resource(RESOURCE_ID_PARK_BALL);
+			break;
+		case 26:
+			s_background_bitmap = gbitmap_create_with_resource(RESOURCE_ID_PARK_ALTERNATE_BALL);
+			break;
+		case 27:
+			s_background_bitmap = gbitmap_create_with_resource(RESOURCE_ID_DREAM_BALL);
+			break;
+		case 28:
+			s_background_bitmap = gbitmap_create_with_resource(RESOURCE_ID_BEAST_BALL);
+			break;
 		default:
 			break;
 	}
 	
+	gbitmap_destroy(s_battery_bitmap);
+	gbitmap_destroy(s_battery_full_bitmap);
+	gbitmap_destroy(s_battery_charging_bitmap);
+	gbitmap_destroy(s_health_bitmap);
+	
+	if (image_number == 19 || image_number == 20 || image_number == 23 || image_number == 27 || image_number == 28) {
+		is_inverted = true;
+		s_battery_bitmap = gbitmap_create_with_resource(RESOURCE_ID_BATTERY_INVERTED_ICON);
+		s_battery_charging_bitmap = gbitmap_create_with_resource(RESOURCE_ID_BATTERY_CHARGING_INVERTED_ICON);
+		s_battery_full_bitmap = gbitmap_create_with_resource(RESOURCE_ID_BATTERY_FULL_INVERTED_ICON);
+		s_health_bitmap = gbitmap_create_with_resource(RESOURCE_ID_HEALTH_INVERTED_ICON);
+	} else {
+		is_inverted = false;
+		s_battery_bitmap = gbitmap_create_with_resource(RESOURCE_ID_BATTERY_ICON);
+		s_battery_charging_bitmap = gbitmap_create_with_resource(RESOURCE_ID_BATTERY_CHARGING_ICON);
+		s_battery_full_bitmap = gbitmap_create_with_resource(RESOURCE_ID_BATTERY_FULL_ICON);
+		s_health_bitmap = gbitmap_create_with_resource(RESOURCE_ID_HEALTH_ICON);
+	}
+	
 	bitmap_layer_set_bitmap(s_background_layer, s_background_bitmap);
+	battery_handler();
+	bitmap_layer_set_bitmap(s_health_layer, s_health_bitmap);
 }
 
 static void initialize_ui() {
@@ -192,6 +261,9 @@ static void main_window_unload(Window *window) {
 	gbitmap_destroy(s_battery_full_bitmap);
 	gbitmap_destroy(s_battery_charging_bitmap);
 	bitmap_layer_destroy(s_battery_layer);
+	
+	gbitmap_destroy(s_health_bitmap);
+	bitmap_layer_destroy(s_health_layer);
 	
 	layer_destroy(s_foreground_layer);
 	

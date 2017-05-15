@@ -11,6 +11,114 @@
         "resources": {
             "media": [
                 {
+                    "file": "images/beastball.png",
+                    "name": "BEAST_BALL",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/dreamball.png",
+                    "name": "DREAM_BALL",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/parkball(alternate).png",
+                    "name": "PARK_ALTERNATE_BALL",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/parkball.png",
+                    "name": "PARK_BALL",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/cherishball.png",
+                    "name": "CHERISH_BALL",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/duskball.png",
+                    "name": "DUSK_BALL",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/healball.png",
+                    "name": "HEAL_BALL",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/quickball.png",
+                    "name": "QUICK_BALL",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/health_inverted.png",
+                    "name": "HEALTH_INVERTED_ICON",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/battery_inverted.png",
+                    "name": "BATTERY_INVERTED_ICON",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/battery_full_inverted.png",
+                    "name": "BATTERY_FULL_INVERTED_ICON",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/battery_charging_inverted.png",
+                    "name": "BATTERY_CHARGING_INVERTED_ICON",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/timerball.png",
+                    "name": "TIMER_BALL",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/repeatball.png",
+                    "name": "REPEAT_BALL",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/netball.png",
+                    "name": "NET_BALL",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/nestball.png",
+                    "name": "NEST_BALL",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/luxuryball.png",
+                    "name": "LUXURY_BALL",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/diveball.png",
+                    "name": "DIVE_BALL",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
                     "file": "images/sportball.png",
                     "name": "SPORT_BALL",
                     "targetPlatforms": null,
@@ -172,11 +280,7 @@
         },
         "sdkVersion": "3",
         "targetPlatforms": [
-            "aplite",
-            "basalt",
-            "chalk",
-            "diorite",
-            "emery"
+            "basalt"
         ],
         "uuid": "cb786667-e9e3-4579-8900-4b9fc50f7ea4",
         "watchapp": {
