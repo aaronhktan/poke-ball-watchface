@@ -1,61 +1,192 @@
 {
     "author": "cheeseisdisgusting@gmail.com",
-    "dependencies": {},
+    "dependencies": {
+        "pebble-clay": "^1.0.4"
+    },
     "keywords": [],
     "name": "pok-ball",
     "pebble": {
         "displayName": "Pok\u00e9 Ball Watchface",
         "enableMultiJS": true,
-        "messageKeys": [],
+        "messageKeys": [
+            "healthEnabled",
+            "weatherEnabled",
+            "disconnectEnabled",
+            "hourlyVibrationEnabled",
+            "weatherProvider",
+            "temperatureUnit",
+            "owmKey",
+            "wuKey",
+            "dsKey",
+            "temperature",
+            "conditions",
+            "pmEmail",
+            "pmPIN",
+            "animateOnShake",
+            "pokeBall"
+        ],
         "projectType": "native",
         "resources": {
             "media": [
                 {
-                    "file": "images/beastball.png",
-                    "name": "BEAST_BALL",
+                    "file": "images/partly_night.png",
+                    "name": "WEATHER_PARTLY_NIGHT_ICON",
                     "targetPlatforms": null,
                     "type": "bitmap"
                 },
                 {
-                    "file": "images/dreamball.png",
-                    "name": "DREAM_BALL",
+                    "file": "images/partly_night_inverted.png",
+                    "name": "WEATHER_INVERTED_PARTLY_NIGHT_ICON",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/thunder_inverted.png",
+                    "name": "WEATHER_INVERTED_THUNDER_ICON",
+                    "spaceOptimization": "memory",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/sun_inverted",
+                    "name": "WEATHER_INVERTED_SUN_ICON",
+                    "spaceOptimization": "memory",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/snow_inverted.png",
+                    "name": "WEATHER_INVERTED_SNOW_ICON",
+                    "spaceOptimization": "memory",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/rain_inverted.png",
+                    "name": "WEATHER_INVERTED_RAIN_ICON",
+                    "spaceOptimization": "memory",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/partly_inverted.png",
+                    "name": "WEATHER_INVERTED_PARTLY_ICON",
+                    "spaceOptimization": "memory",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/moon_inverted.png",
+                    "name": "WEATHER_INVERTED_MOON_ICON",
+                    "spaceOptimization": "memory",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/cloud_inverted.png",
+                    "name": "WEATHER_INVERTED_CLOUD_ICON",
+                    "spaceOptimization": "memory",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/snow.png",
+                    "name": "WEATHER_SNOW_ICON",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/partly.png",
+                    "name": "WEATHER_PARTLY_ICON",
                     "targetPlatforms": null,
                     "type": "bitmap"
                 },
                 {
                     "file": "images/parkball(alternate).png",
                     "name": "PARK_ALTERNATE_BALL",
+                    "targetPlatforms": [
+                        "basalt",
+                        "chalk"
+                    ],
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/friendball.png",
+                    "name": "FRIEND_BALL",
+                    "targetPlatforms": [
+                        "basalt",
+                        "chalk"
+                    ],
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/icon.png",
+                    "menuIcon": true,
+                    "name": "MENU_ICON",
                     "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/beastball.png",
+                    "name": "BEAST_BALL",
+                    "targetPlatforms": [
+                        "basalt",
+                        "chalk"
+                    ],
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/dreamball.png",
+                    "name": "DREAM_BALL",
+                    "targetPlatforms": [
+                        "basalt",
+                        "chalk"
+                    ],
                     "type": "bitmap"
                 },
                 {
                     "file": "images/parkball.png",
                     "name": "PARK_BALL",
-                    "targetPlatforms": null,
+                    "targetPlatforms": [
+                        "basalt",
+                        "chalk"
+                    ],
                     "type": "bitmap"
                 },
                 {
                     "file": "images/cherishball.png",
                     "name": "CHERISH_BALL",
-                    "targetPlatforms": null,
+                    "targetPlatforms": [
+                        "basalt",
+                        "chalk"
+                    ],
                     "type": "bitmap"
                 },
                 {
                     "file": "images/duskball.png",
                     "name": "DUSK_BALL",
-                    "targetPlatforms": null,
+                    "targetPlatforms": [
+                        "basalt",
+                        "chalk"
+                    ],
                     "type": "bitmap"
                 },
                 {
                     "file": "images/healball.png",
                     "name": "HEAL_BALL",
-                    "targetPlatforms": null,
+                    "targetPlatforms": [
+                        "basalt",
+                        "chalk"
+                    ],
                     "type": "bitmap"
                 },
                 {
                     "file": "images/quickball.png",
                     "name": "QUICK_BALL",
-                    "targetPlatforms": null,
+                    "targetPlatforms": [
+                        "basalt",
+                        "chalk"
+                    ],
                     "type": "bitmap"
                 },
                 {
@@ -85,103 +216,145 @@
                 {
                     "file": "images/timerball.png",
                     "name": "TIMER_BALL",
-                    "targetPlatforms": null,
+                    "targetPlatforms": [
+                        "basalt",
+                        "chalk"
+                    ],
                     "type": "bitmap"
                 },
                 {
                     "file": "images/repeatball.png",
                     "name": "REPEAT_BALL",
-                    "targetPlatforms": null,
+                    "targetPlatforms": [
+                        "basalt",
+                        "chalk"
+                    ],
                     "type": "bitmap"
                 },
                 {
                     "file": "images/netball.png",
                     "name": "NET_BALL",
-                    "targetPlatforms": null,
+                    "targetPlatforms": [
+                        "basalt",
+                        "chalk"
+                    ],
                     "type": "bitmap"
                 },
                 {
                     "file": "images/nestball.png",
                     "name": "NEST_BALL",
-                    "targetPlatforms": null,
+                    "targetPlatforms": [
+                        "basalt",
+                        "chalk"
+                    ],
                     "type": "bitmap"
                 },
                 {
                     "file": "images/luxuryball.png",
                     "name": "LUXURY_BALL",
-                    "targetPlatforms": null,
+                    "targetPlatforms": [
+                        "basalt",
+                        "chalk"
+                    ],
                     "type": "bitmap"
                 },
                 {
                     "file": "images/diveball.png",
                     "name": "DIVE_BALL",
-                    "targetPlatforms": null,
+                    "targetPlatforms": [
+                        "basalt",
+                        "chalk"
+                    ],
                     "type": "bitmap"
                 },
                 {
                     "file": "images/sportball.png",
                     "name": "SPORT_BALL",
-                    "targetPlatforms": null,
+                    "targetPlatforms": [
+                        "basalt",
+                        "chalk"
+                    ],
                     "type": "bitmap"
                 },
                 {
                     "file": "images/safariball.png",
                     "name": "SAFARI_BALL",
-                    "targetPlatforms": null,
+                    "targetPlatforms": [
+                        "basalt",
+                        "chalk"
+                    ],
                     "type": "bitmap"
                 },
                 {
                     "file": "images/premiereball.png",
                     "name": "PREMIER_BALL",
-                    "targetPlatforms": null,
+                    "targetPlatforms": [
+                        "basalt",
+                        "chalk"
+                    ],
                     "type": "bitmap"
                 },
                 {
                     "file": "images/moonball.png",
                     "name": "MOON_BALL",
-                    "targetPlatforms": null,
+                    "targetPlatforms": [
+                        "basalt",
+                        "chalk"
+                    ],
                     "type": "bitmap"
                 },
                 {
                     "file": "images/greenlureball.png",
                     "name": "GREEN_LURE_BALL",
-                    "targetPlatforms": null,
+                    "targetPlatforms": [
+                        "basalt",
+                        "chalk"
+                    ],
                     "type": "bitmap"
                 },
                 {
                     "file": "images/bluelureball.png",
                     "name": "BLUE_LURE_BALL",
-                    "targetPlatforms": null,
+                    "targetPlatforms": [
+                        "basalt",
+                        "chalk"
+                    ],
                     "type": "bitmap"
                 },
                 {
                     "file": "images/loveball.png",
                     "name": "LOVE_BALL",
-                    "targetPlatforms": null,
+                    "targetPlatforms": [
+                        "basalt",
+                        "chalk"
+                    ],
                     "type": "bitmap"
                 },
                 {
                     "file": "images/levelball.png",
                     "name": "LEVEL_BALL",
-                    "targetPlatforms": null,
+                    "targetPlatforms": [
+                        "basalt",
+                        "chalk"
+                    ],
                     "type": "bitmap"
                 },
                 {
                     "file": "images/heavyball.png",
                     "name": "HEAVY_BALL",
-                    "targetPlatforms": null,
-                    "type": "bitmap"
-                },
-                {
-                    "file": "images/friendball.png",
-                    "name": "FRIEND_BALL",
-                    "targetPlatforms": null,
+                    "targetPlatforms": [
+                        "basalt",
+                        "chalk"
+                    ],
                     "type": "bitmap"
                 },
                 {
                     "file": "images/fastball.png",
                     "name": "FAST_BALL",
-                    "targetPlatforms": null,
+                    "targetPlatforms": [
+                        "basalt",
+                        "chalk"
+                    ],
                     "type": "bitmap"
                 },
                 {
@@ -205,18 +378,13 @@
                 {
                     "file": "images/moon.png",
                     "name": "WEATHER_MOON_ICON",
+                    "spaceOptimization": "memory",
                     "targetPlatforms": null,
                     "type": "bitmap"
                 },
                 {
                     "file": "images/cloud.png",
                     "name": "WEATHER_CLOUD_ICON",
-                    "targetPlatforms": null,
-                    "type": "bitmap"
-                },
-                {
-                    "file": "images/health.png",
-                    "name": "HEALTH_ICON",
                     "targetPlatforms": null,
                     "type": "bitmap"
                 },
@@ -241,33 +409,38 @@
                 {
                     "file": "images/masterball.png",
                     "name": "MASTER_BALL",
-                    "targetPlatforms": null,
+                    "targetPlatforms": [
+                        "basalt",
+                        "chalk"
+                    ],
                     "type": "bitmap"
                 },
                 {
                     "file": "images/ultraball.png",
                     "name": "ULTRA_BALL",
-                    "targetPlatforms": null,
+                    "targetPlatforms": [
+                        "basalt",
+                        "chalk"
+                    ],
                     "type": "bitmap"
                 },
                 {
                     "file": "images/greatball.png",
                     "name": "GREAT_BALL",
-                    "targetPlatforms": null,
+                    "targetPlatforms": [
+                        "basalt",
+                        "chalk"
+                    ],
                     "type": "bitmap"
                 },
                 {
                     "file": "images/pokeball.png",
                     "name": "POKE_BALL",
-                    "targetPlatforms": null,
+                    "targetPlatforms": [
+                        "basalt",
+                        "chalk"
+                    ],
                     "type": "bitmap"
-                },
-                {
-                    "characterRegex": "[0-9A-Za-z:.]",
-                    "file": "fonts/GB.ttf",
-                    "name": "GB_8",
-                    "targetPlatforms": null,
-                    "type": "font"
                 },
                 {
                     "characterRegex": "[0-9:]",
@@ -275,12 +448,20 @@
                     "name": "GB_24",
                     "targetPlatforms": null,
                     "type": "font"
+                },
+                {
+                    "characterRegex": "[-0-9A-Za-z:.]",
+                    "file": "fonts/GB.ttf",
+                    "name": "GB_8",
+                    "targetPlatforms": null,
+                    "type": "font"
                 }
             ]
         },
         "sdkVersion": "3",
         "targetPlatforms": [
-            "basalt"
+            "basalt",
+            "chalk"
         ],
         "uuid": "cb786667-e9e3-4579-8900-4b9fc50f7ea4",
         "watchapp": {
