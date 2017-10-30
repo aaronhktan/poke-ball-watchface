@@ -6,6 +6,11 @@
     "keywords": [],
     "name": "pok-ball",
     "pebble": {
+        "capabilities": [
+            "location",
+            "configurable",
+            "health"
+        ],
         "displayName": "Pok\u00e9 Ball Watchface",
         "enableMultiJS": true,
         "messageKeys": [
