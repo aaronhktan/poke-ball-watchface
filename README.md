@@ -1,6 +1,8 @@
 # Poké Ball Watchface
 A Poké Ball watchface for Pebble, written in C.
 
+![alt tag](https://github.com/cheeseisdisgusting/poke-ball-watchface/blob/master/screenshots/Basalt.png)
+
 Gotta catch 'em all! You'll always have the right Poké Ball on hand so that you can be the Pokémon Master.
 
 - - - - -
