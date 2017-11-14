@@ -34,6 +34,18 @@
         "resources": {
             "media": [
                 {
+                    "file": "images/error_inverted.png",
+                    "name": "ERROR_INVERTED_ICON",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/error.png",
+                    "name": "ERROR_ICON",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
                     "file": "images/partly_night.png",
                     "name": "WEATHER_PARTLY_NIGHT_ICON",
                     "targetPlatforms": null,
@@ -473,5 +485,5 @@
             "watchface": true
         }
     },
-    "version": "1.0.0"
+    "version": "1.1.0"
 }

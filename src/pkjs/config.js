@@ -5,7 +5,7 @@ module.exports = [
 	},
 	{
 		"type": "text",
-		"defaultValue": "This is the settings page for the Poké Ball watchface. You are running version 1.0.",
+		"defaultValue": "This is the settings page for the Poké Ball watchface. You are running version 1.1.",
 	},
 	{
 		"type": "section",

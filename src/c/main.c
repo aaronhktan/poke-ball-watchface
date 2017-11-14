@@ -151,12 +151,11 @@ static void draw_weather(int icon) {
 			s_weather_bitmap = gbitmap_create_with_resource((is_inverted ? RESOURCE_ID_WEATHER_INVERTED_PARTLY_NIGHT_ICON : RESOURCE_ID_WEATHER_PARTLY_NIGHT_ICON));
 			break;
 		default:
+			s_weather_bitmap = gbitmap_create_with_resource((is_inverted ? RESOURCE_ID_ERROR_INVERTED_ICON : RESOURCE_ID_ERROR_ICON));
 			break;
 	}
 	
-	if (icon != 0) {
-		bitmap_layer_set_bitmap(s_weather_layer, s_weather_bitmap);
-	}
+	bitmap_layer_set_bitmap(s_weather_layer, s_weather_bitmap);
 }
 
 /************************************************************************* Bluetooth Updater */
