@@ -28,8 +28,40 @@ module.exports = function(minified) {
 		});
 	}
 	
+	function toggleWeather() { // Enable or disable changing settings based on whether weather is enabled
+		if (this.get() !== false) {
+			clayConfig.getItemByMessageKey('weatherProvider').enable();
+			clayConfig.getItemByMessageKey('temperatureUnit').enable();
+			clayConfig.getItemByMessageKey('defaultEnabled').enable();
+			if (clayConfig.getItemByMessageKey('defaultEnabled').get() === true) {
+				clayConfig.getItemByMessageKey('defaultLocation').enable();
+			}
+		} else {
+			clayConfig.getItemByMessageKey('weatherProvider').disable();
+			clayConfig.getItemByMessageKey('temperatureUnit').disable();
+			clayConfig.getItemByMessageKey('defaultEnabled').disable();
+			clayConfig.getItemByMessageKey('defaultLocation').disable();
+		}
+	}
+	
+	function toggleLocation() {
+		if (this.get() !== false) {
+			clayConfig.getItemByMessageKey('defaultLocation').enable();
+		} else {
+			clayConfig.getItemByMessageKey('defaultLocation').disable();
+		}
+	}
+	
 	clayConfig.on(clayConfig.EVENTS.AFTER_BUILD, function() {
 		var importButton = clayConfig.getItemById('importButton');
 		importButton.on('click', importPMKey);
+		
+		var weatherToggle = clayConfig.getItemByMessageKey('weatherEnabled');
+		toggleWeather.call(weatherToggle);
+		weatherToggle.on('click', toggleWeather);
+		
+		var locationToggle = clayConfig.getItemByMessageKey('defaultEnabled');
+		toggleLocation.call(locationToggle);
+		locationToggle.on('click', toggleLocation);
 	});
 };

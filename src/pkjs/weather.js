@@ -196,9 +196,38 @@ exports.getWeather = function() {
 	if (localStorage.getItem('clay-settings') !== null) {
 		settings = JSON.parse(localStorage.getItem('clay-settings'));
 		if (settings.weatherEnabled === true) {
-			navigator.geolocation.getCurrentPosition(locationSuccess, locationError, {timeout: 15000, maximumAge: 60000});
 			owmKey = (settings.owmKey === "") ? keys.owmKey : settings.owmKey;
 			temperatureUnit = parseInt(settings.temperatureUnit);
+			if (settings.defaultEnabled === true) {
+				try {
+					var url = encodeURI('https://maps.googleapis.com/maps/api/geocode/json?address=' + settings.defaultLocation + '&key=' + keys.mapsKey);
+					xhrRequest(url, 'GET', function(responseText) {
+						var json = JSON.parse(responseText);
+						if (json.status == 'OK') {
+							var lat = '';
+							var long = '';
+							if (json.results[0].geometry.location.lat) {
+								lat = json.results[0].geometry.location.lat;
+							}
+							if (json.results[0].geometry.location.lng) {
+								long = json.results[0].geometry.location.lng;
+							}
+							locationSuccess({
+								'coords': {
+									'latitude': lat,
+									'longitude': long
+								},
+							});
+						} else {
+							sendWeather('ERR', 0);
+						}
+					});
+				} catch (e) {
+					sendWeather('ERR', 0);
+				}
+			} else {
+				navigator.geolocation.getCurrentPosition(locationSuccess, locationError, {timeout: 15000, maximumAge: 60000});
+			}
 		}
 	} else {
 		navigator.geolocation.getCurrentPosition(locationSuccess, locationError, {timeout: 15000, maximumAge: 60000});

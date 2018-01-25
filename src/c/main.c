@@ -422,23 +422,37 @@ static void inbox_received_callback(DictionaryIterator *iterator, void *context)
 	Tuple *disconnect_enabled_tuple = dict_find(iterator, MESSAGE_KEY_disconnectEnabled);
 	
 	if (temp_tuple && conditions_tuple) {
+		APP_LOG(APP_LOG_LEVEL_DEBUG, "Weather received");
 		snprintf(s_temperature_text, sizeof(s_temperature_text), "%s", temp_tuple->value->cstring);
 		layer_mark_dirty(s_foreground_layer);
 		weather_icon = conditions_tuple->value->int8;
 		draw_weather(weather_icon);
 	} else if (disconnect_enabled_tuple) {
+		APP_LOG(APP_LOG_LEVEL_DEBUG, "Settings received");
 		Tuple *hourly_vibration_tuple = dict_find(iterator, MESSAGE_KEY_hourlyVibrationEnabled);
 		Tuple *health_enabled_tuple = dict_find(iterator, MESSAGE_KEY_healthEnabled);
 		Tuple *weather_enabled_tuple = dict_find(iterator, MESSAGE_KEY_weatherEnabled);
 		Tuple *animate_on_shake_tuple = dict_find(iterator, MESSAGE_KEY_animateOnShake);
 		Tuple *poke_ball_tuple = dict_find(iterator, MESSAGE_KEY_pokeBall);
 		
-		settings.vibrate_on_disconnect = disconnect_enabled_tuple->value->int32 == 1;
+		if (disconnect_enabled_tuple) {
+			settings.vibrate_on_disconnect = disconnect_enabled_tuple->value->int32 == 1;
+		}
+		if (hourly_vibration_tuple) {
 		settings.hourly_vibration = hourly_vibration_tuple->value->int32 == 1;
-		settings.health_enabled = health_enabled_tuple->value->int32 == 1;
-		settings.weather_enabled = weather_enabled_tuple->value->int32 == 1;
-		settings.animate_on_shake = animate_on_shake_tuple->value->int32 == 1;
-		settings.poke_ball = atoi(poke_ball_tuple->value->cstring);
+		}
+		if (health_enabled_tuple) {
+			settings.health_enabled = health_enabled_tuple->value->int32 == 1;
+		} 
+		if (weather_enabled_tuple) {
+			settings.weather_enabled = weather_enabled_tuple->value->int32 == 1;
+		} 
+		if (animate_on_shake_tuple) {
+			settings.animate_on_shake = animate_on_shake_tuple->value->int32 == 1;
+		} 
+		if (poke_ball_tuple) {
+			settings.poke_ball = atoi(poke_ball_tuple->value->cstring);
+		} 
 		
 		save_settings();
 		
@@ -517,7 +531,7 @@ static void main_window_unload(Window *window) {
 
 static void init() {
 	app_message_register_inbox_received(inbox_received_callback);
-	app_message_open(256, 128);
+	app_message_open(512, 128);
 	
 	settings_init();
 	
