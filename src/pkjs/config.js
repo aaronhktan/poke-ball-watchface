@@ -414,7 +414,7 @@ module.exports = [
             "value": 21 
           },
           { 
-            "label": "<p align='center'>Quick Ball</p><img alt='Quick Ball' style='border-radius:45px;margin:1rem' height='90 width='90' align='center' src='https://github.com/cheeseisdisgusting/poke-ball-watchface/blob/master/resources/images/quickball%7Echalk.png'/>", 
+            "label": "<p align='center'>Quick Ball</p><img alt='Quick Ball' style='border-radius:45px;margin:1rem' height='90 width='90' align='center' src='https://raw.githubusercontent.com/cheeseisdisgusting/poke-ball-watchface/master/resources/images/quickball%7Echalk.png'/>", 
             "value": 22 
           },
           { 

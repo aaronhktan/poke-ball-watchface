@@ -56,7 +56,7 @@ static void foreground_update_proc(Layer *s_foreground_layer, GContext *ctx) {
     graphics_context_set_text_color(ctx, GColorBlack);
   }
   
-  #if PBL_RECT
+#if PBL_RECT
   GSize time_text_bounds = graphics_text_layout_get_content_size(s_time_text, s_gb_font_large, GRect(0, 0, bounds.size.w, bounds.size.h), GTextOverflowModeWordWrap, GTextAlignmentCenter);
   graphics_draw_text(ctx, s_time_text, s_gb_font_large, GRect((bounds.size.w - time_text_bounds.w) / 2, bounds.size.h / 2 + time_text_bounds.h, time_text_bounds.w, time_text_bounds.h),
                      GTextOverflowModeWordWrap, GTextAlignmentCenter, NULL);
@@ -72,7 +72,7 @@ static void foreground_update_proc(Layer *s_foreground_layer, GContext *ctx) {
   GSize temperature_text_bounds = graphics_text_layout_get_content_size(s_temperature_text, s_gb_font_small, GRect(0, 0, bounds.size.w, bounds.size.h), GTextOverflowModeWordWrap, GTextAlignmentRight);
   graphics_draw_text(ctx, s_temperature_text, s_gb_font_small, GRect(122 - 2 - temperature_text_bounds.w, 97, temperature_text_bounds.w, temperature_text_bounds.h),
                      GTextOverflowModeWordWrap, GTextAlignmentRight, NULL);
-  #elif PBL_ROUND
+#elif PBL_ROUND
   GSize time_text_bounds = graphics_text_layout_get_content_size(s_time_text, s_gb_font_large, GRect(0, 0, bounds.size.w, bounds.size.h), GTextOverflowModeWordWrap, GTextAlignmentCenter);
   graphics_draw_text(ctx, s_time_text, s_gb_font_large, GRect((bounds.size.w - time_text_bounds.w) / 2, bounds.size.h / 2 + 1.1 * time_text_bounds.h, time_text_bounds.w, time_text_bounds.h),
                      GTextOverflowModeWordWrap, GTextAlignmentCenter, NULL);
@@ -88,7 +88,7 @@ static void foreground_update_proc(Layer *s_foreground_layer, GContext *ctx) {
   GSize temperature_text_bounds = graphics_text_layout_get_content_size(s_temperature_text, s_gb_font_small, GRect(0, 0, bounds.size.w, bounds.size.h), GTextOverflowModeWordWrap, GTextAlignmentLeft);
   graphics_draw_text(ctx, s_temperature_text, s_gb_font_small, GRect(144 - 2 - temperature_text_bounds.w, 107, temperature_text_bounds.w, temperature_text_bounds.h),
                      GTextOverflowModeWordWrap, GTextAlignmentLeft, NULL);
-  #endif
+#endif
 }
 
 static void update_time() {
@@ -385,11 +385,11 @@ static void initialize_ui() {
   bitmap_layer_set_bitmap(s_background_layer, s_background_bitmap);
   layer_add_child(window_get_root_layer(s_main_window), bitmap_layer_get_layer(s_background_layer));
   
-  #if PBL_RECT
+#if PBL_RECT
   s_battery_layer = bitmap_layer_create(GRect(13, 99, 11, 6));
-  #elif PBL_ROUND
+#elif PBL_ROUND
   s_battery_layer = bitmap_layer_create(GRect(28, 109, 11, 6));
-  #endif
+#endif
   bitmap_layer_set_bitmap(s_battery_layer, s_battery_bitmap);
   bitmap_layer_set_compositing_mode(s_battery_layer, GCompOpSet);
   layer_add_child(bitmap_layer_get_layer(s_background_layer), bitmap_layer_get_layer(s_battery_layer));
@@ -398,11 +398,11 @@ static void initialize_ui() {
   layer_set_update_proc(s_foreground_layer, foreground_update_proc);
   layer_add_child(window_get_root_layer(s_main_window), s_foreground_layer);
   
-  #if PBL_RECT
+#if PBL_RECT
   s_weather_layer = bitmap_layer_create(GRect(122, 98, 8, 7));
-  #else
+#else
   s_weather_layer = bitmap_layer_create(GRect(144, 108, 7, 7));
-  #endif
+#endif
   bitmap_layer_set_compositing_mode(s_weather_layer, GCompOpSet);
   layer_add_child(bitmap_layer_get_layer(s_background_layer), bitmap_layer_get_layer(s_weather_layer));
   
@@ -470,14 +470,14 @@ static void inbox_received_callback(DictionaryIterator *iterator, void *context)
       accel_tap_service_unsubscribe();
     }
     
-    #if defined(PBL_HEALTH)
+#if defined(PBL_HEALTH)
     if (settings.health_enabled) {
       health_service_events_subscribe(health_handler, NULL);
     } else {
       health_service_events_unsubscribe();
       snprintf(s_steps_text, sizeof(s_steps_text), "-");
     }
-    #endif
+#endif
     
     redraw_bitmap(settings.poke_ball);
     
@@ -521,9 +521,9 @@ static void main_window_unload(Window *window) {
   
   tick_timer_service_unsubscribe();
   battery_state_service_unsubscribe();
-  #if defined(PBL_HEALTH)
+#if defined(PBL_HEALTH)
     health_service_events_unsubscribe();
-  #endif
+#endif
   accel_tap_service_unsubscribe();
   
   app_timer_cancel(s_weather_timer);
@@ -554,11 +554,11 @@ static void init() {
   connection_service_subscribe((ConnectionHandlers) {
     .pebble_app_connection_handler = bluetooth_callback
   });
-  #if defined(PBL_HEALTH)
+#if defined(PBL_HEALTH)
   if (settings.health_enabled) {
     health_service_events_subscribe(health_handler, NULL);
   }
-  #endif
+#endif
   
   UnobstructedAreaHandlers handlers = {
     .change = prv_unobstructed_change,

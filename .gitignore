@@ -1,0 +1,13 @@
+# Ignore lock-waf files
+.lock-waf*
+
+# Ignore all build files
+build/*
+*keys.js
+
+# Ignore node modules
+node_modules/*
+package-lock.json
+
+# Ignore Mac files
+*.DS_Store
